@@ -69,3 +69,5 @@
   <text x="400" y="1148" text-anchor="middle" font-size="12" fill="#495057">🟠 HIGH (3) — if misconfigured, requests slow down</text>
   <text x="400" y="1168" text-anchor="middle" font-size="12" fill="#495057">🟢 MEDIUM (2) — if not optimized, costs increase</text>
 </svg>
+
+<!-- Cleaned SVG without C2PA metadata -->
