@@ -1,0 +1,71 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" font-family="Arial, sans-serif">
+  <rect width="800" height="1200" fill="#f8f9fa" rx="10"/>
+  <text x="400" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#232f3e">AWS Traffic Flow — 11 Layers</text>
+  <line x1="200" y1="55" x2="600" y2="55" stroke="#232f3e" stroke-width="2"/>
+
+  <rect x="250" y="80" width="300" height="60" rx="8" fill="#8c6fb0" stroke="#6b4c8a" stroke-width="2"/>
+  <text x="400" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🌐 1. Route 53 (DNS Resolution)</text>
+  <text x="400" y="128" text-anchor="middle" font-size="12" fill="#e0d4f0">CRITICAL — if fails, all down</text>
+  <line x1="400" y1="140" x2="400" y2="165" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="170" width="300" height="60" rx="8" fill="#e05243" stroke="#b83a2e" stroke-width="2"/>
+  <text x="400" y="198" text-anchor="middle" font-size="16" font-weight="bold" fill="white">⚡ 2. CloudFront + WAF</text>
+  <text x="400" y="218" text-anchor="middle" font-size="12" fill="#fcd4d0">HIGH — caches + blocks attacks</text>
+  <line x1="400" y1="230" x2="400" y2="255" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="260" width="300" height="60" rx="8" fill="#f58536" stroke="#d96b2a" stroke-width="2"/>
+  <text x="400" y="288" text-anchor="middle" font-size="16" font-weight="bold" fill="white">⚖️ 3. Application Load Balancer</text>
+  <text x="400" y="308" text-anchor="middle" font-size="12" fill="#fce4d0">CRITICAL — distributes traffic</text>
+  <line x1="400" y1="320" x2="400" y2="345" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="350" width="400" height="60" rx="8" fill="#6ca0dc" stroke="#4a7eb8" stroke-width="2"/>
+  <text x="400" y="378" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🔒 4. Virtual Private Cloud (VPC)</text>
+  <text x="400" y="398" text-anchor="middle" font-size="12" fill="#d4e4f4">CRITICAL — network isolation &amp; routing</text>
+  <line x1="400" y1="410" x2="400" y2="435" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="440" width="300" height="60" rx="8" fill="#6ca0dc" stroke="#4a7eb8" stroke-width="2" opacity="0.85"/>
+  <text x="400" y="468" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🛡️ 5. ALB Security Group</text>
+  <text x="400" y="488" text-anchor="middle" font-size="12" fill="#d4e4f4">HIGH — first firewall</text>
+  <line x1="400" y1="500" x2="400" y2="525" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="530" width="300" height="60" rx="8" fill="#7b8994" stroke="#5a6a75" stroke-width="2"/>
+  <text x="400" y="558" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🎯 6. Target Group (Private Subnet)</text>
+  <text x="400" y="578" text-anchor="middle" font-size="12" fill="#d4dce0">CRITICAL — actual workload</text>
+  <line x1="400" y1="590" x2="400" y2="615" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="620" width="300" height="60" rx="8" fill="#6ca0dc" stroke="#4a7eb8" stroke-width="2" opacity="0.85"/>
+  <text x="400" y="648" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🛡️ 7. App Server Security Group</text>
+  <text x="400" y="668" text-anchor="middle" font-size="12" fill="#d4e4f4">HIGH — instance firewall</text>
+  <line x1="400" y1="680" x2="400" y2="705" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="710" width="300" height="60" rx="8" fill="#3b48d0" stroke="#2a369c" stroke-width="2"/>
+  <text x="400" y="738" text-anchor="middle" font-size="16" font-weight="bold" fill="white">💻 8. Application Server (EKS/ECS)</text>
+  <text x="400" y="758" text-anchor="middle" font-size="12" fill="#c4caf0">CRITICAL — business logic</text>
+  <line x1="400" y1="770" x2="400" y2="795" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="800" width="300" height="60" rx="8" fill="#527fff" stroke="#3a5fd0" stroke-width="2"/>
+  <text x="400" y="828" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🗄️ 9. RDS Database (Private)</text>
+  <text x="400" y="848" text-anchor="middle" font-size="12" fill="#c4d4ff">CRITICAL — data persistence</text>
+  <line x1="400" y1="860" x2="400" y2="885" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="890" width="300" height="60" rx="8" fill="#4ca664" stroke="#32804a" stroke-width="2"/>
+  <text x="400" y="918" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🌍 10. NAT Gateway / VPC Endpoints</text>
+  <text x="400" y="938" text-anchor="middle" font-size="12" fill="#c4e4cc">MEDIUM — outbound access</text>
+  <line x1="400" y1="950" x2="400" y2="975" stroke="#232f3e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="980" width="300" height="60" rx="8" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+  <text x="400" y="1008" text-anchor="middle" font-size="16" font-weight="bold" fill="white">✅ 11. User Receives Response</text>
+  <text x="400" y="1028" text-anchor="middle" font-size="12" fill="#d4f4dc">SUCCESS — request complete</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#232f3e"/>
+    </marker>
+  </defs>
+
+  <rect x="150" y="1080" width="500" height="90" rx="8" fill="#e9ecef" stroke="#ced4da" stroke-width="1"/>
+  <text x="400" y="1105" text-anchor="middle" font-size="14" font-weight="bold" fill="#232f3e">📊 Summary</text>
+  <text x="400" y="1128" text-anchor="middle" font-size="12" fill="#495057">🔴 CRITICAL (6) — if fails, entire request fails</text>
+  <text x="400" y="1148" text-anchor="middle" font-size="12" fill="#495057">🟠 HIGH (3) — if misconfigured, requests slow down</text>
+  <text x="400" y="1168" text-anchor="middle" font-size="12" fill="#495057">🟢 MEDIUM (2) — if not optimized, costs increase</text>
+</svg>
