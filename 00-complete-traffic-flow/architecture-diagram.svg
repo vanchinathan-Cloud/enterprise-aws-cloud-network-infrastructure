@@ -39,7 +39,7 @@
 
 <!-- Layer 2: CloudFront + WAF -->
 <rect x="100" y="220" width="800" height="80" class="layer-box" fill="#FF6C6C"/>
-<text x="500" y="250" text-anchor="middle" class="layer-title">Layer 2: CloudFront + WAF - CDN & Security</text>
+<text x="500" y="250" text-anchor="middle" class="layer-title">Layer 2: CloudFront + WAF - CDN &amp; Security</text>
 <text x="500" y="275" text-anchor="middle" class="layer-desc">Content caching, security filtering, DDoS protection</text>
 <text x="120" y="295" class="layer-desc">Time: 2-5ms (hit) | 50-100ms (miss)</text>
 
@@ -51,7 +51,7 @@
 
 <!-- Layer 4: VPC Routing -->
 <rect x="100" y="420" width="800" height="80" class="layer-box" fill="#4B9BFF"/>
-<text x="500" y="450" text-anchor="middle" class="layer-title">Layer 4: VPC & Route Tables - Network Routing</text>
+<text x="500" y="450" text-anchor="middle" class="layer-title">Layer 4: VPC &amp; Route Tables - Network Routing</text>
 <text x="500" y="475" text-anchor="middle" class="layer-desc">Route table lookup, determine traffic path</text>
 <text x="120" y="495" class="layer-desc">Command: aws ec2 describe-route-tables</text>
 
@@ -95,7 +95,7 @@
 <rect x="100" y="1120" width="800" height="80" class="layer-box" fill="#47B881"/>
 <text x="500" y="1150" text-anchor="middle" class="layer-title">Layer 11: Response Path - Return to User</text>
 <text x="500" y="1175" text-anchor="middle" class="layer-desc">Reverse flow through all layers, cache response, render</text>
-<text x="120" y="1195" class="layer-desc">Time: 200-500ms total (depends on cache & DB)</text>
+<text x="120" y="1195" class="layer-desc">Time: 200-500ms total (depends on cache &amp; DB)</text>
 
 <!-- Key Metrics Box -->
 <rect x="100" y="1230" width="800" height="120" fill="#ecf0f1" stroke="#2c3e50" stroke-width="2" rx="8"/>
