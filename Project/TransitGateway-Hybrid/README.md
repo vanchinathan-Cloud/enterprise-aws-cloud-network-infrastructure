@@ -731,16 +731,6 @@ LIMIT 20;
 
 ---
 
-## 📚 Documentation Links
-
-- [Architecture Details](./architecture.md)
-- [Deployment Guide](./deployment-guide.md)
-- [BGP Configuration](./bgp-config/README.md)
-- [Flow Logs Analysis](./flow-logs-analysis/README.md)
-- [Troubleshooting](./troubleshooting.md)
-
----
-
 ## 🔗 Related Resources
 
 - [AWS Transit Gateway Documentation](https://docs.aws.amazon.com/vpc/latest/tgw/)
@@ -750,6 +740,6 @@ LIMIT 20;
 
 ---
 
-**Last Updated:** January 2024  
+
 **Status:** Production-Ready  
-**Author:** AWS Solutions Architecture
+AWS Solutions Architecture

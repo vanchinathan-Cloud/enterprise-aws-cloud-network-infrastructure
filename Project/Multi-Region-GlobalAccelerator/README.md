@@ -621,15 +621,6 @@ ab -n 1000 -c 100 https://app.example.com/api/health
 
 ---
 
-## 📚 Documentation
-
-- [Architecture Details](./architecture.md)
-- [Deployment Guide](./deployment-guide.md)
-- [Troubleshooting Guide](./troubleshooting.md)
-- [Cost Analysis](./cost-analysis.md)
-
----
-
 ## 🔗 Related Resources
 
 - [AWS Global Accelerator Documentation](https://docs.aws.amazon.com/globalaccelerator/)
@@ -640,3 +631,4 @@ ab -n 1000 -c 100 https://app.example.com/api/health
 ---
   
 **Status:** Production-Ready
+AWS Solutions Architecture

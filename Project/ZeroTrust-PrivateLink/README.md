@@ -731,15 +731,6 @@ aws logs tail /aws/vpc/flow-logs --follow | grep vpce-
 
 ---
 
-## 📚 Documentation
-
-- [Architecture Details](./architecture.md)
-- [Deployment Guide](./deployment-guide.md)
-- [Endpoint Policies](./endpoint-policies/README.md)
-- [Security Groups](./security-groups/README.md)
-- [Troubleshooting](./troubleshooting.md)
-
----
 
 ## 🔗 Related Resources
 
@@ -750,6 +741,5 @@ aws logs tail /aws/vpc/flow-logs --follow | grep vpce-
 
 ---
 
-**Last Updated:** January 2024  
 **Status:** Production-Ready  
-**Author:** AWS Solutions Architecture
+AWS Solutions Architecture

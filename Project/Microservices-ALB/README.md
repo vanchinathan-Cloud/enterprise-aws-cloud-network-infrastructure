@@ -835,18 +835,6 @@ watch -n 5 './check-deployment-metrics.sh'
 
 ---
 
-## 📚 Documentation
-
-- [Architecture Details](./architecture.md)
-- [Deployment Guide](./deployment-guide.md)
-- [ALB Configuration](./alb-config/README.md)
-- [WAF Rules](./waf-rules/README.md)
-- [ECS Services](./ecs-services/README.md)
-- [Canary Deployment](./canary-deployment.md)
-- [Troubleshooting Guide](./troubleshooting.md)
-
----
-
 ## 🔗 Related Resources
 
 - [ALB Documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/)
@@ -856,6 +844,5 @@ watch -n 5 './check-deployment-metrics.sh'
 
 ---
 
-**Last Updated:** January 2024  
 **Status:** Production-Ready  
-**Author:** AWS Solutions Architecture
+AWS Solutions Architecture

@@ -666,15 +666,6 @@ show bgp ipv4 10.0.0.0/16
 
 ---
 
-## 📚 Documentation
-
-- [Architecture Details](./architecture.md)
-- [Deployment Guide](./deployment-guide.md)
-- [BGP Routing Configuration](./bgp-routing/README.md)
-- [IPSec Configuration](./ipsec-config/README.md)
-- [Failover Runbook](./failover-runbook.md)
-- [Troubleshooting Guide](./troubleshooting.md)
-
 ---
 
 ## 🔗 Related Resources
@@ -686,6 +677,6 @@ show bgp ipv4 10.0.0.0/16
 
 ---
 
-**Last Updated:** January 2024  
+
 **Status:** Production-Ready  
-**Author:** AWS Solutions Architecture
+AWS Solutions Architecture
