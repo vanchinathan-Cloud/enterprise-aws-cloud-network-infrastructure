@@ -1,0 +1,67 @@
+﻿TROUBLESHOOTING DECISION TREE
+Issue: Application Unreachable?
+│
+├─ Step 1: DNS Resolution
+│  └─ nslookup app.example.com
+│     ├─ Returns IP → Continue
+│     └─ Fails/Timeout → FIX: Route 53 hosted zone, health checks
+│
+├─ Step 2: CloudFront Reachable?
+│  └─ curl -I https://IP
+│     ├─ Returns 200 → Continue
+│     └─ Timeout/403 → FIX: CloudFront distribution, WAF rules
+│
+├─ Step 3: ALB Reachable?
+│  └─ curl -I https://alb-dns.elb.amazonaws.com
+│     ├─ Returns 200 → Continue
+│     └─ Timeout → FIX: ALB status, security group
+│
+├─ Step 4: Targets Healthy?
+│  └─ aws elbv2 describe-target-health --target-group-arn 
+│     ├─ Status: Healthy → Continue
+│     └─ Status: Unhealthy → FIX: App security group, health check path
+│
+├─ Step 5: App Responding?
+│  └─ curl http://target:8080/health
+│     ├─ Returns 200 → Continue
+│     └─ Timeout/Error → FIX: SSH to instance, check app service
+│
+├─ Step 6: Database Accessible?
+│  └─ nc -zv rds-endpoint 3306
+│     ├─ Connection successful → ISSUE RESOLVED ✓
+│     └─ Connection refused → FIX: RDS security group
+│
+└─ DEBUGGING COMPLETE
+
+
+Issue: High Latency?
+│
+├─ Which layer is slow?
+│  ├─ Route 53 (DNS) → ADD: health checks, geolocation routing
+│  ├─ CloudFront → OPTIMIZE: cache hit ratio, TTL values
+│  ├─ ALB → SCALE: add targets, optimize health checks
+│  ├─ App → PROFILE: database queries, API calls
+│  └─ Database → INDEX: add database indexes
+│
+└─ Retest → Latency improved ✓
+
+
+Issue: Database Connection Timeout?
+│
+├─ Step 1: Is RDS running?
+│  └─ aws rds describe-db-instances
+│     ├─ Status: available → Continue
+│     └─ Status: other → FIX: restart RDS instance
+│
+├─ Step 2: Can reach port 3306?
+│  └─ nc -zv rds-endpoint 3306
+│     ├─ Connection successful → Continue
+│     └─ Connection refused → FIX: RDS security group
+│
+├─ Step 3: Credentials correct?
+│  └─ mysql -h rds-endpoint -u user -p
+│     ├─ Successful login → ISSUE RESOLVED ✓
+│     └─ Authentication failed → FIX: verify credentials
+│
+└─ DATABASE DEBUGGING COMPLETE
+

@@ -1,0 +1,63 @@
+<svg width="920" height="480" viewBox="0 0 920 480" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="920" height="480" rx="14" fill="#14161B"/>
+  <text x="460" y="36" text-anchor="middle" font-size="19" font-weight="bold" fill="#F2F2F0">Site-to-Site VPN Lab</text>
+  <text x="460" y="56" text-anchor="middle" font-size="12" fill="#9A9A96">Module 05 — What You're Building</text>
+
+  <!-- DC VPC (on-prem simulator) -->
+  <rect x="40" y="90" width="330" height="300" rx="12" fill="#241708" stroke="#B0672A" stroke-width="1.2"/>
+  <text x="60" y="114" font-size="12" font-weight="bold" fill="#E2924C">▤ DC-VPC — 192.168.0.0/16 (on-prem)</text>
+
+  <rect x="60" y="128" width="290" height="70" rx="8" fill="#0E1A24" stroke="#3A6EA5" stroke-width="1"/>
+  <text x="72" y="146" font-size="10" font-weight="bold" fill="#7FB2E8">▥ VPN Server EC2 — Libreswan</text>
+  <text x="72" y="162" font-size="9" fill="#9BB9D6">On-prem simulator, public IP</text>
+  <rect x="72" y="170" width="180" height="20" rx="10" fill="#2A1608" stroke="#B32F2F" stroke-width="0.9"/>
+  <text x="162" y="184" text-anchor="middle" font-size="9" fill="#E28B8B">⚑ Source/Dest Check: disabled</text>
+
+  <rect x="60" y="210" width="290" height="46" rx="8" fill="#181A22" stroke="#847E96" stroke-width="0.8"/>
+  <text x="205" y="230" text-anchor="middle" font-size="9" font-weight="bold" fill="#C7C7C2">Customer Gateway (CGW)</text>
+  <text x="205" y="246" text-anchor="middle" font-size="9" fill="#9A9A96">VPN Server public IP · BGP ASN 65000</text>
+
+  <rect x="60" y="266" width="290" height="46" rx="8" fill="#0E1A24" stroke="#3A6EA5" stroke-width="0.8"/>
+  <text x="205" y="286" text-anchor="middle" font-size="9" font-weight="bold" fill="#7FB2E8">EC2-B — private subnet</text>
+  <text x="205" y="302" text-anchor="middle" font-size="9" fill="#9BB9D6">DC-Private-Subnet 192.168.100.0/24</text>
+
+  <text x="205" y="336" text-anchor="middle" font-size="9" fill="#F0A96A">Route: 10.0.0.0/16 → VPN Server instance</text>
+  <text x="205" y="352" text-anchor="middle" font-size="9" fill="#F0A96A">(DC-Private-RT)</text>
+
+  <!-- Tunnels -->
+  <line x1="370" y1="180" x2="530" y2="180" stroke="#5FCB94" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="450" y="172" text-anchor="middle" font-size="9" fill="#5FCB94">Tunnel 1 — UP</text>
+  <line x1="370" y1="220" x2="530" y2="220" stroke="#847E96" stroke-width="1.4" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+  <text x="450" y="212" text-anchor="middle" font-size="9" fill="#9A9A96">Tunnel 2 — standby</text>
+  <text x="450" y="245" text-anchor="middle" font-size="9" fill="#C7C7C2">Site-to-Site VPN Connection</text>
+  <text x="450" y="259" text-anchor="middle" font-size="8" fill="#847E96">Static route — 192.168.0.0/16</text>
+
+  <!-- AWS VPC -->
+  <rect x="530" y="90" width="350" height="300" rx="12" fill="#0F1A14" stroke="#3E9E6F" stroke-width="1.2"/>
+  <text x="550" y="114" font-size="12" font-weight="bold" fill="#5FCB94">▤ AWS-VPC — 10.0.0.0/16 (ap-south-1)</text>
+
+  <rect x="550" y="128" width="310" height="46" rx="8" fill="#0E2C4A" stroke="#3A6EA5" stroke-width="1"/>
+  <text x="705" y="148" text-anchor="middle" font-size="10" font-weight="bold" fill="#7FB2E8">◇ Virtual Private Gateway (VGW)</text>
+  <text x="705" y="164" text-anchor="middle" font-size="9" fill="#9BB9D6">Attached to AWS-VPC</text>
+
+  <rect x="550" y="184" width="310" height="46" rx="8" fill="#181A22" stroke="#847E96" stroke-width="0.8"/>
+  <text x="705" y="204" text-anchor="middle" font-size="9" font-weight="bold" fill="#C7C7C2">Route Table</text>
+  <text x="705" y="220" text-anchor="middle" font-size="9" fill="#9A9A96">192.168.0.0/16 → VGW</text>
+
+  <rect x="550" y="240" width="310" height="46" rx="8" fill="#0E1A24" stroke="#3A6EA5" stroke-width="0.8"/>
+  <text x="705" y="260" text-anchor="middle" font-size="9" font-weight="bold" fill="#7FB2E8">EC2-A — AWS-Private-subnet</text>
+  <text x="705" y="276" text-anchor="middle" font-size="9" fill="#9BB9D6">10.0.0.0/24</text>
+
+  <text x="705" y="330" text-anchor="middle" font-size="9" fill="#847E96">Ping EC2-A ⇄ EC2-B confirms full path works</text>
+
+  <circle cx="70" cy="424" r="5" fill="#3A6EA5"/><text x="82" y="428" font-size="9" fill="#C7C7C2">Compute</text>
+  <circle cx="180" cy="424" r="5" fill="#847E96"/><text x="192" y="428" font-size="9" fill="#C7C7C2">Gateway / routing</text>
+  <circle cx="340" cy="424" r="5" fill="#B0672A"/><text x="352" y="428" font-size="9" fill="#C7C7C2">On-prem simulator</text>
+  <circle cx="500" cy="424" r="5" fill="#5FCB94"/><text x="512" y="428" font-size="9" fill="#C7C7C2">Tunnel up</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#9A9A96"/>
+    </marker>
+  </defs>
+</svg>

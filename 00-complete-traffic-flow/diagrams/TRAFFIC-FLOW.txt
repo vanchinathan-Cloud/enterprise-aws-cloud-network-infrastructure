@@ -1,0 +1,98 @@
+﻿AWS TRAFFIC FLOW - 11 LAYERS
+
+┌─────────────────────────────────────────────────────────────────┐
+│                        INTERNET (User)                          │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                    1. DNS Resolution
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │      Route 53 (DNS Query)              │
+        │  Status: CRITICAL - if fails, all down │
+        └────────────────────┬───────────────────┘
+                             │
+                    2. Global Distribution
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  CloudFront (CDN) + WAF                │
+        │  Status: HIGH - caches + blocks attacks│
+        └────────────────────┬───────────────────┘
+                             │
+                    3. TLS Termination
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  Application Load Balancer (ALB)       │
+        │  Status: CRITICAL - distributes traffic│
+        └────────────────────┬───────────────────┘
+                             │
+              4. VPC Boundary & Routing
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  Virtual Private Cloud (VPC)           │
+        │  Status: CRITICAL - network isolation  │
+        └────────────────────┬───────────────────┘
+                             │
+          5. First Security Layer
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  ALB Security Group                    │
+        │  Status: HIGH - first firewall         │
+        └────────────────────┬───────────────────┘
+                             │
+            6. Forward to App Servers
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  Target Group (Private Subnet)         │
+        │  Status: CRITICAL - actual workload    │
+        └────────────────────┬───────────────────┘
+                             │
+          7. Second Security Layer
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  App Server Security Group             │
+        │  Status: HIGH - instance firewall      │
+        └────────────────────┬───────────────────┘
+                             │
+        8. Application Processing
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  Application Server (EKS Pod/ECS)      │
+        │  Status: CRITICAL - business logic     │
+        └────────────────────┬───────────────────┘
+                             │
+        9. Database Layer Access
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  RDS Database (Private Subnet)         │
+        │  Status: CRITICAL - data persistence   │
+        └────────────────────┬───────────────────┘
+                             │
+       10. Egress Control
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  NAT Gateway / VPC Endpoints           │
+        │  Status: MEDIUM - outbound access      │
+        └────────────────────┬───────────────────┘
+                             │
+        11. Response Path (Reverse)
+                             │
+                             ▼
+        ┌────────────────────────────────────────┐
+        │  User Receives Response                │
+        │  Status: SUCCESS - request complete    │
+        └────────────────────────────────────────┘
+
+TOTAL LAYERS: 11
+CRITICAL LAYERS: 6 (if any fails, entire request fails)
+HIGH PRIORITY: 3 (if misconfigured, requests slow down)
+MEDIUM PRIORITY: 2 (if not optimized, costs increase)

@@ -1,0 +1,74 @@
+<svg width="960" height="620" viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="960" height="620" rx="14" fill="#14161B"/>
+  <text x="480" y="36" text-anchor="middle" font-size="19" font-weight="bold" fill="#F2F2F0">Zero Trust Internal API</text>
+  <text x="480" y="56" text-anchor="middle" font-size="12" fill="#9A9A96">Module 09 — What You're Building</text>
+
+  <!-- EC2 Client -->
+  <rect x="40" y="240" width="220" height="130" rx="12" fill="#0E1A24" stroke="#3A6EA5" stroke-width="1.2"/>
+  <text x="60" y="264" font-size="12" font-weight="bold" fill="#7FB2E8">▥ EC2 — ZeroTrust-Client</text>
+  <rect x="56" y="276" width="188" height="24" rx="8" fill="#0E2C4A" stroke="#3A6EA5" stroke-width="0.8"/>
+  <text x="150" y="292" text-anchor="middle" font-size="9" fill="#7FB2E8">SigV4-signed requests</text>
+  <text x="150" y="316" text-anchor="middle" font-size="9" fill="#9BB9D6">assumes IAM role —</text>
+  <text x="150" y="330" text-anchor="middle" font-size="9" fill="#9BB9D6">no static credentials</text>
+  <text x="150" y="352" text-anchor="middle" font-size="8" fill="#847E96">every request signed &amp; authorized</text>
+
+  <line x1="260" y1="305" x2="330" y2="230" stroke="#5FCB94" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="300" y="255" text-anchor="middle" font-size="8" fill="#5FCB94">signed request</text>
+
+  <!-- API Gateway -->
+  <rect x="330" y="150" width="260" height="90" rx="10" fill="#2A2312" stroke="#B98A2E" stroke-width="1.3"/>
+  <text x="350" y="174" font-size="12" font-weight="bold" fill="#E2B04E">◧ API Gateway — InternalSecureAPI</text>
+  <rect x="346" y="184" width="228" height="24" rx="8" fill="#3A2E10" stroke="#B98A2E" stroke-width="0.8"/>
+  <text x="460" y="200" text-anchor="middle" font-size="9" fill="#E2B04E">⚿ Authorization: AWS_IAM</text>
+  <text x="460" y="222" text-anchor="middle" font-size="8" fill="#F0CC7E">rejects any unsigned / unauthorized request</text>
+
+  <line x1="590" y1="195" x2="660" y2="195" stroke="#E2B04E" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- Lambda -->
+  <rect x="660" y="150" width="260" height="90" rx="10" fill="#241708" stroke="#B0672A" stroke-width="1.3"/>
+  <text x="680" y="174" font-size="12" font-weight="bold" fill="#E2924C">λ Lambda — Internal API handler</text>
+  <rect x="676" y="184" width="228" height="24" rx="8" fill="#2A1608" stroke="#B0672A" stroke-width="0.8"/>
+  <text x="790" y="200" text-anchor="middle" font-size="9" fill="#E2924C">Role: iam_role_zero_trust_lambda</text>
+  <text x="790" y="222" text-anchor="middle" font-size="8" fill="#F0A96A">read-only DynamoDB access, least privilege</text>
+
+  <line x1="790" y1="240" x2="790" y2="300" stroke="#E2924C" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- DynamoDB -->
+  <rect x="660" y="300" width="260" height="90" rx="10" fill="#1A1526" stroke="#7A5CC7" stroke-width="1.3"/>
+  <text x="680" y="324" font-size="12" font-weight="bold" fill="#A98FE0">◈ DynamoDB — InternalInventory</text>
+  <rect x="676" y="334" width="228" height="24" rx="8" fill="#241534" stroke="#7A5CC7" stroke-width="0.8"/>
+  <text x="790" y="350" text-anchor="middle" font-size="9" fill="#A98FE0">Partition key: item_id (String)</text>
+  <text x="790" y="372" text-anchor="middle" font-size="8" fill="#C6B4EE">no direct public access — Lambda-only</text>
+
+  <!-- IAM roles panel -->
+  <rect x="330" y="270" width="260" height="120" rx="10" fill="#181A22" stroke="#847E96" stroke-width="1.1"/>
+  <text x="350" y="292" font-size="11" font-weight="bold" fill="#C7C7C2">⛨ IAM — least-privilege roles</text>
+  <rect x="346" y="302" width="228" height="26" rx="8" fill="#0E2C4A" stroke="#3A6EA5" stroke-width="0.7"/>
+  <text x="460" y="319" text-anchor="middle" font-size="9" fill="#7FB2E8">iam_role_zero_trust_ec2_client</text>
+  <rect x="346" y="334" width="228" height="26" rx="8" fill="#2A1608" stroke="#B0672A" stroke-width="0.7"/>
+  <text x="460" y="351" text-anchor="middle" font-size="9" fill="#E2924C">iam_role_zero_trust_lambda</text>
+  <text x="460" y="374" text-anchor="middle" font-size="8" fill="#847E96">each role trusts only its own service</text>
+
+  <!-- VPC container -->
+  <rect x="40" y="430" width="880" height="130" rx="12" fill="#0F1A14" stroke="#3E9E6F" stroke-width="1.2"/>
+  <text x="60" y="454" font-size="12" font-weight="bold" fill="#5FCB94">▤ VPC — isolated network for the EC2 test client</text>
+  <rect x="60" y="466" width="380" height="70" rx="8" fill="#0E1A24" stroke="#3A6EA5" stroke-width="1"/>
+  <text x="72" y="486" font-size="10" font-weight="bold" fill="#7FB2E8">Public Subnet</text>
+  <text x="250" y="486" text-anchor="middle" font-size="9" fill="#9BB9D6">ZeroTrust-Client EC2 instance</text>
+  <text x="250" y="506" text-anchor="middle" font-size="8" fill="#847E96">no inbound trust — only signed API calls succeed</text>
+
+  <text x="700" y="500" text-anchor="middle" font-size="9" fill="#847E96">Network placement alone grants no access —</text>
+  <text x="700" y="516" text-anchor="middle" font-size="9" fill="#847E96">every hop still authenticates &amp; authorizes independently</text>
+
+  <circle cx="90" cy="588" r="5" fill="#3A6EA5"/><text x="102" y="592" font-size="9" fill="#C7C7C2">Client / compute</text>
+  <circle cx="250" cy="588" r="5" fill="#B98A2E"/><text x="262" y="592" font-size="9" fill="#C7C7C2">API / auth boundary</text>
+  <circle cx="420" cy="588" r="5" fill="#B0672A"/><text x="432" y="592" font-size="9" fill="#C7C7C2">Compute (Lambda)</text>
+  <circle cx="590" cy="588" r="5" fill="#7A5CC7"/><text x="602" y="592" font-size="9" fill="#C7C7C2">Data tier</text>
+  <circle cx="720" cy="588" r="5" fill="#847E96"/><text x="732" y="592" font-size="9" fill="#C7C7C2">IAM / identity</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#9A9A96"/>
+    </marker>
+  </defs>
+</svg>
