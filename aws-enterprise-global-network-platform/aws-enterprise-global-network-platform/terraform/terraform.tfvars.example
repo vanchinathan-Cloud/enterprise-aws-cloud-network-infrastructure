@@ -1,0 +1,22 @@
+home_region = "ap-south-1"
+
+# Role in the Network Account that the pipeline assumes
+# assume_role_arn = "arn:aws:iam::111122223333:role/terraform-network"
+
+tags = {
+  Application = "global-network-platform"
+  Owner       = "network-engineering"
+  CostCenter  = "NET-0001"
+  ManagedBy   = "terraform"
+}
+
+# Organization (or OU) ARNs that receive IPAM pools and Resolver rules via RAM
+# ram_principals = ["arn:aws:organizations::999999999999:organization/o-xxxxxxxxxx"]
+
+# Replace with the real on-premises DNS servers inside 172.16.0.0/12
+onprem_domain  = "corp.airline.example"
+onprem_dns_ips = ["172.16.10.10", "172.16.10.11"]
+
+egress_allowed_domains = [".amazonaws.com", ".windowsupdate.com"]
+
+enable_gwlb = false

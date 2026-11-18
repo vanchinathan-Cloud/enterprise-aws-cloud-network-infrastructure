@@ -1,0 +1,5 @@
+bucket         = "airline-network-tfstate-CHANGE-ME"
+key            = "network/global/terraform.tfstate"
+region         = "ap-south-1"
+dynamodb_table = "airline-network-tflock"
+encrypt        = true
